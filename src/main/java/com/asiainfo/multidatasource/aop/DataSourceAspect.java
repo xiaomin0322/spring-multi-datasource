@@ -3,7 +3,6 @@ package com.asiainfo.multidatasource.aop;
 import java.lang.reflect.Method;
 import java.util.Map;
 
-import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.MapUtils;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -29,6 +28,9 @@ public class DataSourceAspect {
 
 	private static final Logger logger = LoggerFactory.getLogger(DataSourceAspect.class);
 	
+	/**
+	 * key是方法名称前缀，value是对应的数据源名称
+	 */
 	private Map<String,String> maps;
 	
 	public Map<String, String> getMaps() {

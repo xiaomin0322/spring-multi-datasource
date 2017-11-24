@@ -44,7 +44,7 @@
                 <entry key="slave" value-ref="slaveDataSource" />
             </map>
         </property>
-        <property name="defaultTargetDataSource" ref="slaveDataSource" />
+        <property name="defaultTargetDataSource" ref="masterDataSource" />
     </bean>
     <!-- jdbcTemplate管理 -->
     <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
@@ -61,11 +61,7 @@
     
     
     <bean id="dataSourceAspect" class="com.asiainfo.multidatasource.aop.DataSourceAspect" >
-      <property name="maps">
-            <map>
-                <entry key="query" value="slave" />
-            </map>
-        </property>
+      
     </bean>
     <aop:config>
 		<aop:pointcut expression="(execution(* com.asiainfo.multidatasource..service..*.*(..)))"

@@ -17,7 +17,7 @@ import com.asiainfo.multidatasource.model.User;
  */
 @Service
 @Transactional
-@DataSource("slave")
+@DataSource("master")
 public class UserServiceImpl implements IUserService {
 
 	@Autowired
@@ -30,7 +30,6 @@ public class UserServiceImpl implements IUserService {
 	 * @see com.asiainfo.multidatasource.service.IUserService#save(java.lang.String, java.lang.String)
 	 */
 	@Override
-	@DataSource("master")
 	public void save(String userId, String userName) {
 		this.dao.save(new User(userId, userName));
 	}
@@ -42,6 +41,7 @@ public class UserServiceImpl implements IUserService {
 	 * @see com.asiainfo.multidatasource.service.IUserService#queryUser(java.lang.String)
 	 */
 	@Override
+	@DataSource("slave")
 	public User queryUser(String userId) {
 		return this.dao.queryByUserId(userId);
 	}
