@@ -61,7 +61,12 @@
     
     
     <bean id="dataSourceAspect" class="com.asiainfo.multidatasource.aop.DataSourceAspect" >
-      
+      <property name="maps">
+            <map>
+                <entry key="query" value="slave" />
+                 <entry key="save" value="master" />
+            </map>
+        </property>
     </bean>
     <aop:config>
 		<aop:pointcut expression="(execution(* com.asiainfo.multidatasource..service..*.*(..)))"
