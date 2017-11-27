@@ -74,8 +74,8 @@ public class DataSourceAspect {
       
 
         if (targetMethod != null && !isConfiger) {
-            Transactional transactional = target.getAnnotation(Transactional.class);
-            if (transactional != null) {
+           /* Transactional transactional = target.getAnnotation(Transactional.class);
+            if (transactional != null) {*/
             	DataSource clazzDatasource = target.getAnnotation(DataSource.class);
             	DataSource methodDatasource = targetMethod.getAnnotation(DataSource.class);
                 if (methodDatasource != null) {
@@ -90,7 +90,7 @@ public class DataSourceAspect {
             } else {
             	logger.debug("methodName {} non transactional method, using default datasource({}) ......",methodName);
             }
-        }
+        //}
         
         try {
 			return point.proceed();
