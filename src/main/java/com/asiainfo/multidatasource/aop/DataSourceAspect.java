@@ -65,7 +65,7 @@ public class DataSourceAspect {
         		 if(methodName.startsWith(s)) {
         			 isConfiger = true;
         			  String datasorrce = maps.get(s);
-        			  logger.debug("methodName using specify configer datasource({}) ......",methodName,datasorrce);
+        			  logger.debug("methodName {} using specify configer datasource({}) ......",methodName,datasorrce);
         			  DataSourceHolder.setDataSource(datasorrce);
         			  break;
         		 }
@@ -79,16 +79,16 @@ public class DataSourceAspect {
             	DataSource clazzDatasource = target.getAnnotation(DataSource.class);
             	DataSource methodDatasource = targetMethod.getAnnotation(DataSource.class);
                 if (methodDatasource != null) {
-                	logger.debug("methodName using specify method datasource({}) ......", methodName,methodDatasource.value());
+                	logger.debug("methodName {} using specify method datasource({}) ......", methodName,methodDatasource.value());
                     DataSourceHolder.setDataSource(methodDatasource.value());
                 } else if (clazzDatasource != null) {
-                	logger.debug("methodName using specify clazz datasource({}) ......", methodName,clazzDatasource.value());
+                	logger.debug("methodName {} using specify clazz datasource({}) ......", methodName,clazzDatasource.value());
                     DataSourceHolder.setDataSource(clazzDatasource.value());
                 } else {
-                    logger.warn("does not specify any datasource, using default datasource ......");
+                    logger.warn("methodName {} does not specify any datasource, using default datasource ......",methodName);
                 }
             } else {
-            	logger.debug("non transactional method, using default datasource({}) ......");
+            	logger.debug("methodName {} non transactional method, using default datasource({}) ......",methodName);
             }
         }
         
