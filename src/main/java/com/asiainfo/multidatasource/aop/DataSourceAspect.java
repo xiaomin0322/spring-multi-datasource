@@ -63,16 +63,23 @@ public class DataSourceAspect {
         if(MapUtils.isNotEmpty(maps)) {
         	  for(String s:maps.keySet()) {
         		 if(methodName.startsWith(s)) {
-        			 isConfiger = true;
+        			  isConfiger = true;
         			  String datasorrce = maps.get(s);
         			  logger.debug("methodName {} using specify configer datasource({}) ......",methodName,datasorrce);
         			  DataSourceHolder.setDataSource(datasorrce);
         			  break;
         		 }
               }
-        }
-      
+        	  
+        	  if(!isConfiger && maps.containsKey("*")) {
+        		  String datasorrce = maps.get("*");
+        		  logger.debug("methodName {} using specify configer datasource({}) ......",methodName,datasorrce);
+    			  DataSourceHolder.setDataSource(datasorrce);
+    			  isConfiger = true;
+              }
 
+        }
+        
         if (targetMethod != null && !isConfiger) {
            /* Transactional transactional = target.getAnnotation(Transactional.class);
             if (transactional != null) {*/
